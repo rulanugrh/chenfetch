@@ -4,7 +4,7 @@ This is a screenfetch that I made myself, yes I made it with Golang, because I o
 ## Usage
 To usage you can run `chenfetch`
 ```
-sfetch
+chenfetch
 ```
 If you have scoop you can copy file `chenfetch.exe` into folder `shims` in scoop folder
 

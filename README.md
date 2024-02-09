@@ -2,11 +2,11 @@
 This is a screenfetch that I made myself, yes I made it with Golang, because I only know Golang :u
 
 ## Usage
-To usage you can run `sfetch`
+To usage you can run `chenfetch`
 ```
 sfetch
 ```
-If you have scoop you can copy file `sfetch.exe` into folder `shims` in scoop folder
+If you have scoop you can copy file `chenfetch.exe` into folder `shims` in scoop folder
 
 ## Screenshot
 ![screenshot1](.github/1.jpg)

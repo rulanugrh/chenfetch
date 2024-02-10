@@ -13,8 +13,8 @@ import (
 func main() {
 	var s []string
 	var sA []string
-	s = append(s, "  "+xterm256.Sprintf(xterm256.DarkYellow, "████")+"  "+xterm256.Sprintf(xterm256.DarkMagenta, "████")+"  "+xterm256.Sprintf(xterm256.Red, "████")+"  "+xterm256.Sprintf(xterm256.DarkBlue, "████")+"  "+xterm256.Sprintf(xterm256.DarkCyan, "████")+"  "+xterm256.Sprintf(xterm256.Yellow, "████")+"  "+xterm256.Sprintf(xterm256.Blue, "████"))
-	sA = append(sA, "  "+xterm256.Sprintf(xterm256.Black, "████")+"  "+xterm256.Sprintf(xterm256.Magenta, "████")+"  "+xterm256.Sprintf(xterm256.LightGray, "████")+"  "+xterm256.Sprintf(xterm256.Blue, "████")+"  "+xterm256.Sprintf(xterm256.DarkGray, "████")+"  "+xterm256.Sprintf(xterm256.Yellow, "████")+"  "+xterm256.Sprintf(xterm256.Black, "████"))
+	s = append(s, "  "+xterm256.Sprintf(xterm256.Black, "████")+""+xterm256.Sprintf(xterm256.DarkRed, "████")+""+xterm256.Sprintf(xterm256.DarkGreen, "████")+""+xterm256.Sprintf(xterm256.DarkBlue, "████")+""+xterm256.Sprintf(xterm256.DarkCyan, "████")+""+xterm256.Sprintf(xterm256.DarkYellow, "████")+""+xterm256.Sprintf(xterm256.DarkMagenta, "████")+""+xterm256.Sprintf(xterm256.DarkGray, "████"))
+	sA = append(sA, "  "+xterm256.Sprintf(xterm256.LightGray, "████")+""+xterm256.Sprintf(xterm256.Red, "████")+""+xterm256.Sprintf(xterm256.Green, "████")+""+xterm256.Sprintf(xterm256.Blue, "████")+""+xterm256.Sprintf(xterm256.Cyan, "████")+""+xterm256.Sprintf(xterm256.Yellow, "████")+""+xterm256.Sprintf(xterm256.Magenta, "████")+""+xterm256.Sprintf(xterm256.LightGray, "████"))
 
 
 	var block string
@@ -42,17 +42,17 @@ func main() {
 	infoCPU := "  " + "🥗 " + xterm256.Sprintf(xterm256.Yellow, strings.Title(cpuName))
 
 	t := table.NewWriter()
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGreen, "   _____")})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGreen, "  | ___ |"), Host})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGreen, "  ||   ||  J.O")})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGreen, "  ||___||"), infoOS})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGreen, "  |   _ |"), infoKernel})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGreen, "  |_____|"), infoPlatform})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGreen, ` /_/_|_\_\----.`), infoCPU})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGreen, `/_/__|__\_\   )`)})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGreen, `             (`), block})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGreen, `             []`), block2})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGreen, `             []`)})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Blue, "     _____ "), Host})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Blue, "    | ___ | ")})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Blue, "    ||   ||  J.O "), infoOS})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Blue, "    ||___|| "), infoKernel})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Blue, "    |   _ | "), infoPlatform})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Blue, `    |_____| `), infoCPU})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Blue, `   /_/_|_\_\----. `)})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Blue, `  /_/__|__\_\   ) `), block})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Blue, `               ( `), block2})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Blue, `               [] `)})
 
 
 	fmt.Println(t.Render())

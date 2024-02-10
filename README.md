@@ -2,26 +2,26 @@
 This is a screenfetch that I made myself, yes I made it with Golang, because I only know Golang :u
 
 ## Usage
-- Windows
+_**Windows**_
 
-    To usage you can run `chenfetch`
-    ```
-    chenfetch
-    ```
-    If you have scoop you can copy file `bin/chenfetch.exe` into folder `shims` in scoop folder
-    
+To usage you can run `chenfetch`
+```
+chenfetch
+```
+If you have scoop you can copy file `bin/chenfetch.exe` into folder `shims` in scoop folder
 
-- Linux
 
-    Copy file `bin/chenfetch` to `/usr/local/bin`
-    ```
-    cp bin/chenfetch /usr/local/bin/
-    ```
-    
-    To usage you can run `chenfetch`
-    ```
-    chenfetch
-    ```
+_**Linux**_
+
+Copy file `bin/chenfetch` to `/usr/local/bin`
+```
+cp bin/chenfetch /usr/local/bin/
+```
+
+To usage you can run `chenfetch`
+```
+chenfetch
+```
 
 ## Screenshot
 ![screenshot1](.github/1.jpg)

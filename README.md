@@ -27,12 +27,10 @@ chenfetch
 ## All Theme
 _**[Titan Theme](./titan/)**_
 
-![Titan Theme](.github/titan.jpg)
+![screenshot2](.github/assets/titan/3.jpg)
 
-![screenshot2](.github/assets/titan/1.jpg)
 
 _**[Janus Theme](./janus/)**_
-![screenshot2](.github/janus.jpg)
 
 ![screenshot2](.github/assets/janus/1.jpg)
 

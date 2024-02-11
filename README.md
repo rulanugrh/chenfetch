@@ -1,5 +1,5 @@
 # Description
-This is a screenfetch that I made myself, yes I made it with Golang, because I only know Golang :u
+This is a screenfetch that I made myself, yes I made it with Golang, because I only know Golang :u. And i will make some theme :u 
 
 ## Usage
 _**Windows**_
@@ -13,9 +13,10 @@ If you have scoop you can copy file `bin/chenfetch.exe` into folder `shims` in s
 
 _**Linux**_
 
-Copy file `bin/chenfetch` to `/usr/local/bin`
+Copy file `chenfetch` to `/usr/bin`
 ```
-cp bin/chenfetch /usr/local/bin/
+cp bin/chenfetch /usr/bin/
+chmod +x /usr/bin/chenfetch
 ```
 
 To usage you can run `chenfetch`
@@ -23,9 +24,14 @@ To usage you can run `chenfetch`
 chenfetch
 ```
 
-## Screenshot
-![screenshot1](.github/1.jpg)
+## All Theme
+_**[Titan Theme](./titan/)**_
 
-![screenshot2](.github/2.jpg)
+![Titan Theme](.github/titan.jpg)
 
-![screenshot3](.github/3.jpg)
+![screenshot2](.github/assets/titan/1.jpg)
+
+_**[Janus Theme](./janus/)**_
+![screenshot2](.github/janus.jpg)
+
+![screenshot2](.github/assets/janus/1.jpg)

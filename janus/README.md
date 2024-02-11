@@ -1,5 +1,5 @@
 # Description
-Theme titan, if u like this you can follow instruction below
+Theme Janus, if u like this you can follow instruction below
 
 ## Usage
 _**Windows**_
@@ -25,8 +25,8 @@ chenfetch
 ```
 
 ## Screenshot
-![screenshot1](../.github/assets/titan/1.jpg)
+![screenshot1](../.github/assets/janus/1.jpg)
 
-![screenshot2](../.github/assets/titan/2.jpg)
+![screenshot2](../.github/assets/janus/2.jpg)
 
-![screenshot3](../.github/assets/titan/3.jpg)
+![screenshot3](../.github/assets/janus/3.jpg)

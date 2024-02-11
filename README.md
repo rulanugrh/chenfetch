@@ -35,3 +35,5 @@ _**[Janus Theme](./janus/)**_
 ![screenshot2](.github/janus.jpg)
 
 ![screenshot2](.github/assets/janus/1.jpg)
+
+> _Note: Theme will be update, stay tune :u_

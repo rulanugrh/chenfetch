@@ -1,3 +1,5 @@
+github.com/captainsafia/go-user-shell v0.0.0-20170316230437-490e66f0e9cb h1:Zwg2hCwBX0Ss3NrmPAng9gs2gQvdcSRHkOfR/8ishHo=
+github.com/captainsafia/go-user-shell v0.0.0-20170316230437-490e66f0e9cb/go.mod h1:IhIKW5g2DoO9YHcFFgqjC3/bck3uuTwczXsNkbGd71Q=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

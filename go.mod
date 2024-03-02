@@ -3,6 +3,7 @@ module sfetch
 go 1.21
 
 require (
+	github.com/captainsafia/go-user-shell v0.0.0-20170316230437-490e66f0e9cb
 	github.com/gilliek/go-xterm256 v1.0.0
 	github.com/jedib0t/go-pretty/v6 v6.5.4
 	github.com/shirou/gopsutil/v3 v3.24.1

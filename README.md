@@ -34,4 +34,9 @@ _**[Janus Theme](./janus/)**_
 
 ![screenshot2](.github/assets/janus/1.jpg)
 
+
+_**[Pandora Theme](./pandora/)**_
+
+![screenshot2](.github/assets/pandora/1.webp)
+
 > _Note: Theme will be update, stay tune :u_

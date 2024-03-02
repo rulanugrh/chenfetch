@@ -19,40 +19,38 @@ func main() {
 	var cpuName string
 	cpus, _ := cpu.Info()
 	for _, cp := range cpus {
-	  cpuName = fmt.Sprintf("%s", cp.ModelName)
+		cpuName = fmt.Sprintf("%s", cp.ModelName)
 	}
 
-  ntw, _ := net.Interfaces()
-  var ips string
-  for _, nt := range ntw {
-    for _, d := range nt.Addrs {
-      check := strings.Contains(d.Addr, "192")
-      if check == true {
-        ips = fmt.Sprintf("%s", d.Addr)
-        break
-      }
-    }
-  }
+	ntw, _ := net.Interfaces()
+	var ips string
+	for _, nt := range ntw {
+		for _, d := range nt.Addrs {
+			check := strings.Contains(d.Addr, "192")
+			if check == true {
+				ips = fmt.Sprintf("%s", d.Addr)
+				break
+			}
+		}
+	}
 
 	data, _ := host.Info()
- host := fmt.Sprintf("%s@%s", strings.ToLower(os.Getenv("USERNAME")), data.Hostname)
+	host := fmt.Sprintf("%s@%s", strings.ToLower(os.Getenv("USERNAME")), data.Hostname)
 
 	var infoOS string
 	var shell string
- // var user string
 	if data.OS == "windows" {
 		infoOS = "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.DarkCyan, data.OS)
 		ex := os.Getenv("POWERLINE_COMMAND")
 		shell = "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.DarkCyan, string(ex))
-    // user = "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.DarkCyan, host)
- 	} else {
+	} else {
 		infoOS = "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.DarkCyan, data.OS)
 		ex, _ := exec.Command("/bin/sh", "-c", "echo $TERM").Output()
 		shell = "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.DarkCyan, string(ex))
 	}
 
 	infoCPU := "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.DarkCyan, cpuName)
-  infoIP := "  " + xterm256.Sprintf(xterm256.Yellow, "  ") +xterm256.Sprintf(xterm256.DarkCyan, ips)
+	infoIP := "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.DarkCyan, ips)
 
 	t := table.NewWriter()
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})

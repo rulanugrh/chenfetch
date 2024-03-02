@@ -23,45 +23,53 @@ func main() {
 	}
 
   ntw, _ := net.Interfaces()
+  var ips string
   for _, nt := range ntw {
-    fmt.Println(nt.Addrs)
+    for _, d := range nt.Addrs {
+      check := strings.Contains(d.Addr, "192")
+      if check == true {
+        ips = fmt.Sprintf("%s", d.Addr)
+        break
+      }
+    }
   }
+
 	data, _ := host.Info()
-  host := fmt.Sprintf("%s@%s", strings.ToLower(os.Getenv("USERNAME")), data.Hostname)
+ host := fmt.Sprintf("%s@%s", strings.ToLower(os.Getenv("USERNAME")), data.Hostname)
 
 	var infoOS string
 	var shell string
-  var user string
+ // var user string
 	if data.OS == "windows" {
-		infoOS = "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.Cyan, data.OS)
+		infoOS = "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.DarkCyan, data.OS)
 		ex := os.Getenv("POWERLINE_COMMAND")
-		shell = "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.Cyan, string(ex))
-    user = "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.Cyan, host)
+		shell = "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.DarkCyan, string(ex))
+    // user = "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.DarkCyan, host)
  	} else {
-		infoOS = "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.Cyan, data.OS)
+		infoOS = "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.DarkCyan, data.OS)
 		ex, _ := exec.Command("/bin/sh", "-c", "echo $TERM").Output()
-		shell = "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.Cyan, string(ex))
+		shell = "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.DarkCyan, string(ex))
 	}
-  
-	// infoKernel := "  " + xterm256.Sprintf(xterm256.Yellow, "󰀄 ") + xterm256.Sprintf(xterm256.Cyan, data.OS)
-  
-	infoCPU := "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.Cyan, cpuName)
+
+	infoCPU := "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.DarkCyan, cpuName)
+  infoIP := "  " + xterm256.Sprintf(xterm256.Yellow, "  ") +xterm256.Sprintf(xterm256.DarkCyan, ips)
 
 	t := table.NewWriter()
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, "          ,MMM8&&&. "), xterm256.Sprintf(xterm256.Cyan, "┌────────────") + xterm256.Sprintf(xterm256.Red, " Hardware Information ") + xterm256.Sprintf(xterm256.Cyan, "───────────┐")})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, "     _...MMMMM88&&&&..._ ")})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, "  .::'''MMMMM88&&&&&&'''::. "), user})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, " ::     MMMMM88&&&&&&     :: "), infoOS})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, " '::....MMMMM88&&&&&&....::' "), shell})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, "    `''''MMMMM88&&&&''''` "), infoCPU})
+
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, "          ,MMM8&&&. "), xterm256.Sprintf(xterm256.DarkCyan, "┌──────────────") + xterm256.Sprintf(xterm256.Red, " ハードウェア情報 ") + xterm256.Sprintf(xterm256.DarkCyan, "─────────────┐")})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, "     _...MMMMM88&&&&..._ "), ""})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, "  .::'''MMMMM88&&&&&&'''::. "), infoOS})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, " ::     MMMMM88&&&&&&     :: "), shell})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, " '::....MMMMM88&&&&&&....::' "), infoCPU})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, "    `''''MMMMM88&&&&''''` "), infoIP})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, `    jgs   'MMM8&&&' `)})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, ``), xterm256.Sprintf(xterm256.Cyan, "└─────────────────────────────────────────────┘")})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, ``), xterm256.Sprintf(xterm256.DarkCyan, "└─────────────────────────────────────────────┘")})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, ` `)})
 
 	t.SetStyle(table.StyleLight)
 	t.Style().Title.Align = text.AlignCenter
-	t.SetTitle(xterm256.Sprintf(xterm256.Cyan, "chenfetch"))
+	t.SetTitle(xterm256.Sprintf(xterm256.Cyan, host))
 
 	fmt.Println(t.Render())
 }

@@ -20,11 +20,16 @@ func main() {
 	}
 	
 	data, _ := host.Info()
+  var infoOS string
+  if data.OS == "windows" {
+    infoOS = "  " +xterm256.Sprintf(xterm256.Yellow, "  ")+ xterm256.Sprintf(xterm256.Cyan, strings.Title("windows"))
+  } else{
+    infoOS = "  "+xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.Cyan, strings.Title(data.OS))
+  }
 
-	infoOS := "  " +"🍚 " + xterm256.Sprintf(xterm256.Cyan, strings.Title(data.KernelArch))
-	infoKernel := "  " +"🥐 " + xterm256.Sprintf(xterm256.Cyan, strings.Title(data.PlatformFamily))
+	infoKernel := "  "+xterm256.Sprintf(xterm256.Yellow, "󰀄 ") + xterm256.Sprintf(xterm256.Cyan, strings.Title(data.Hostname))
 	infoPlatform := "  " + "🦪 " + xterm256.Sprintf(xterm256.Cyan, strings.Title(data.Platform))
-	infoCPU := "  " + "🍞 " + xterm256.Sprintf(xterm256.Cyan, strings.Title(cpuName))
+	infoCPU := "  " + xterm256.Sprintf(xterm256.Yellow, "  ") + xterm256.Sprintf(xterm256.Cyan, strings.Title(cpuName))
 
 	t := table.NewWriter()
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})

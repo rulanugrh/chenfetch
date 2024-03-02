@@ -6,6 +6,7 @@ import (
 
 	"github.com/gilliek/go-xterm256/xterm256"
 	"github.com/jedib0t/go-pretty/v6/table"
+	"github.com/jedib0t/go-pretty/v6/text"
 	"github.com/shirou/gopsutil/v3/cpu"
 	"github.com/shirou/gopsutil/v3/host"
 )
@@ -37,6 +38,9 @@ func main() {
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, ``), xterm256.Sprintf(xterm256.Cyan, "└───────────────────────────────────────────────┘")})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, ` `)})
 
+  t.SetStyle(table.StyleLight)
+  t.Style().Title.Align = text.AlignCenter
+  t.SetTitle(xterm256.Sprintf(xterm256.Cyan, "chenfetch"))
 
 	fmt.Println(t.Render())
 }

@@ -39,4 +39,7 @@ _**[Pandora Theme](./pandora/)**_
 
 ![screenshot2](.github/assets/pandora/1.webp)
 
+_**[Epimetheus Theme](./epimetheus/)**_
+
+![banner](.github/assets/epimetheus/3.jpg)
 > _Note: Theme will be update, stay tune :u_

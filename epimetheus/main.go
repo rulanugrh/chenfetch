@@ -11,6 +11,7 @@ import (
 	"github.com/shirou/gopsutil/v3/cpu"
 	"github.com/shirou/gopsutil/v3/host"
 	"github.com/shirou/gopsutil/v3/net"
+  "github.com/jaypipes/ghw"
 )
 
 func main() {
@@ -21,6 +22,12 @@ func main() {
 		cpuName = fmt.Sprintf("%s", cp.ModelName)
 	}
 
+  bi, _ := ghw.BIOS()
+  fmt.Println(bi.Vendor)
+  mem, _ := ghw.Memory()
+  fmt.Println(mem.String())
+  bl, _ := ghw.Block()
+  fmt.Println(bl.String())
 	var block string
 	var colorList = []xterm256.Color{
 		xterm256.Red,
@@ -76,7 +83,7 @@ func main() {
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, " |            |  "), infoCPU})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, "  '.________.'   "), infoIP})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ``)})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ` `), block + "      " + block})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, `    `)," "+block + "      " + block})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ` `)})
 

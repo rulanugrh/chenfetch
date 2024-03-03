@@ -16,7 +16,6 @@ func main() {
 	s = append(s, "  "+xterm256.Sprintf(xterm256.Black, "████")+""+xterm256.Sprintf(xterm256.DarkRed, "████")+""+xterm256.Sprintf(xterm256.DarkGreen, "████")+""+xterm256.Sprintf(xterm256.DarkBlue, "████")+""+xterm256.Sprintf(xterm256.DarkCyan, "████")+""+xterm256.Sprintf(xterm256.DarkYellow, "████")+""+xterm256.Sprintf(xterm256.DarkMagenta, "████")+""+xterm256.Sprintf(xterm256.DarkGray, "████"))
 	sA = append(sA, "  "+xterm256.Sprintf(xterm256.LightGray, "████")+""+xterm256.Sprintf(xterm256.Red, "████")+""+xterm256.Sprintf(xterm256.Green, "████")+""+xterm256.Sprintf(xterm256.Blue, "████")+""+xterm256.Sprintf(xterm256.Cyan, "████")+""+xterm256.Sprintf(xterm256.Yellow, "████")+""+xterm256.Sprintf(xterm256.Magenta, "████")+""+xterm256.Sprintf(xterm256.LightGray, "████"))
 
-
 	var block string
 	for _, blk := range s {
 		block = blk
@@ -32,12 +31,12 @@ func main() {
 	for _, cp := range cpus {
 		cpuName = cp.ModelName
 	}
-	
-	data, _ := host.Info()
-	Host := "  "+xterm256.Sprintf(xterm256.Red, "Hello, Everyone 👋")
 
-	infoOS := "  " +"🍔 " + xterm256.Sprintf(xterm256.Yellow, strings.Title(data.KernelArch))
-	infoKernel := "  " +"🥙 " + xterm256.Sprintf(xterm256.Yellow, strings.Title(data.PlatformFamily))
+	data, _ := host.Info()
+	Host := "  " + xterm256.Sprintf(xterm256.Red, "Hello, Everyone 👋")
+
+	infoOS := "  " + "🍔 " + xterm256.Sprintf(xterm256.Yellow, strings.Title(data.KernelArch))
+	infoKernel := "  " + "🥙 " + xterm256.Sprintf(xterm256.Yellow, strings.Title(data.PlatformFamily))
 	infoPlatform := "  " + "🥪 " + xterm256.Sprintf(xterm256.Yellow, strings.Title(data.Platform))
 	infoCPU := "  " + "🥗 " + xterm256.Sprintf(xterm256.Yellow, strings.Title(cpuName))
 
@@ -53,7 +52,6 @@ func main() {
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Blue, `  /_/__|__\_\   ) `), block})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Blue, `               ( `), block2})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Blue, `               [] `)})
-
 
 	fmt.Println(t.Render())
 }

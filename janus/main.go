@@ -34,7 +34,6 @@ func main() {
 	}
 
 	data, _ := host.Info()
-	// host := fmt.Sprintf("%s@%s", strings.ToLower(os.Getenv("USERNAME")), data.Hostname)
 
 	var infoOS string
 	var shell string
@@ -53,7 +52,7 @@ func main() {
 
 	t := table.NewWriter()
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
-  t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
 
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, "          ,MMM8&&&. "), xterm256.Sprintf(xterm256.DarkCyan, "┌──────────────") + xterm256.Sprintf(xterm256.Red, " ハードウェア情報 ") + xterm256.Sprintf(xterm256.DarkCyan, "─────────────┐")})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, "     _...MMMMM88&&&&..._ "), ""})
@@ -64,23 +63,21 @@ func main() {
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, `    jgs   'MMM8&&&' `)})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, ``), xterm256.Sprintf(xterm256.DarkCyan, "└─────────────────────────────────────────────┘")})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, ` `)})
-  t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
 
 	t.SetStyle(table.Style{
-    Name: "newStyle",
-    Box: table.BoxStyle{
-      BottomLeft: "",
-    },
-    Options: table.Options{
-      DrawBorder: false,
-      SeparateColumns: false,
-      SeparateFooter: false,
-      SeparateHeader: false,
-      SeparateRows: false,
-    },
-  })
-	// t.Style().Title.Align = text.AlignCenter
-	// t.SetTitle(xterm256.Sprintf(xterm256.Cyan, host))
+		Name: "newStyle",
+		Box: table.BoxStyle{
+			BottomLeft: "",
+		},
+		Options: table.Options{
+			DrawBorder:      false,
+			SeparateColumns: false,
+			SeparateFooter:  false,
+			SeparateHeader:  false,
+			SeparateRows:    false,
+		},
+	})
 
 	fmt.Println(t.Render())
 }

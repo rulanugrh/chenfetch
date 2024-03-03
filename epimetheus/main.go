@@ -60,16 +60,14 @@ func main() {
 	}
 
 	bi, _ := ghw.BIOS()
-	vendor := "  " + xterm256.Sprintf(xterm256.DarkCyan, "  ") + xterm256.Sprintf(xterm256.DarkCyan, bi.Vendor)
-	fmt.Println(bi.Vendor)
+	vendor := "  " + xterm256.Sprintf(xterm256.DarkCyan, "󰌢 ") + xterm256.Sprintf(xterm256.DarkCyan, bi.Vendor)
 
 	// mem, _ := ghw.Memory()
 	// fmt.Println(mem.String())
 
 	bl, _ := ghw.Block()
-	fmt.Println(bl.String())
 
-	disk := "  " + xterm256.Sprintf(xterm256.DarkCyan, "󰨣  ") + xterm256.Sprintf(xterm256.DarkCyan, ByteFormat(float64(bl.TotalPhysicalBytes), 1))
+	disk := "  " + xterm256.Sprintf(xterm256.DarkCyan, "󰨣 ") + xterm256.Sprintf(xterm256.DarkCyan, ByteFormat(float64(bl.TotalPhysicalBytes), 1)+" Available")
 
 	var block string
 	var colorList = []xterm256.Color{
@@ -119,15 +117,15 @@ func main() {
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ""), xterm256.Sprintf(xterm256.DarkCyan, "┌─────────────") + xterm256.Sprintf(xterm256.Magenta, " E P I M E T H E U S ") + xterm256.Sprintf(xterm256.DarkCyan, "────────────┐")})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, "    _ ___  _  "), ""})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Orange, "  .oooooooooo.  "), infoOS})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, " |"+xterm256.Sprintf(xterm256.Orange, "'oooooooooo'")+xterm256.Sprintf(xterm256.White, "|  ")), shell})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, " |            |  "), infoCPU})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, "  '.________.'   "), infoIP})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ``), vendor})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, `    `), disk})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, "    _ ___  _  "), infoOS})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Orange, "  .oooooooooo.  "), shell})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, " |"+xterm256.Sprintf(xterm256.Orange, "'oooooooooo'")+xterm256.Sprintf(xterm256.White, "|  ")), infoCPU})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, " |            |  "), infoIP})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, "  '.________.'   "), vendor})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ``), disk})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, `    `)})
 	t.AppendRow(table.Row{})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ""), " " + block + "      " + block})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ""), "  " + block + "   " + block})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ` `)})
 
 	t.SetStyle(table.Style{

@@ -21,6 +21,23 @@ func main() {
 		cpuName = fmt.Sprintf("%s", cp.ModelName)
 	}
 
+	var block string
+	var colorList = []xterm256.Color{
+		xterm256.Red,
+		xterm256.Green,
+		xterm256.Blue,
+		xterm256.Cyan,
+		xterm256.Yellow,
+		xterm256.Magenta,
+		xterm256.White,
+		xterm256.LightGray,
+		xterm256.Black,
+	}
+
+	for _, color := range colorList {
+		block += xterm256.Sprintf(color, "  ")
+	}
+
 	ntw, _ := net.Interfaces()
 	var ips string
 	for _, nt := range ntw {
@@ -35,7 +52,6 @@ func main() {
 
 	data, _ := host.Info()
 
-	fmt.Println(" ")
 	var infoOS string
 	var shell string
 	if data.OS == "windows" {
@@ -55,16 +71,16 @@ func main() {
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
 
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, "          ,MMM8&&&. "), xterm256.Sprintf(xterm256.DarkCyan, "┌──────────────") + xterm256.Sprintf(xterm256.Red, " ハードウェア情報 ") + xterm256.Sprintf(xterm256.DarkCyan, "─────────────┐")})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, "     _...MMMMM88&&&&..._ "), ""})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, "  .::'''MMMMM88&&&&&&'''::. "), infoOS})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, " ::     MMMMM88&&&&&&     :: "), shell})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, " '::....MMMMM88&&&&&&....::' "), infoCPU})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, "    `''''MMMMM88&&&&''''` "), infoIP})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, `    jgs   'MMM8&&&' `)})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, ``), xterm256.Sprintf(xterm256.DarkCyan, "└─────────────────────────────────────────────┘")})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Yellow, ` `)})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ""), xterm256.Sprintf(xterm256.DarkCyan, "┌──────────────") + xterm256.Sprintf(xterm256.Red, " ハードウェア情報 ") + xterm256.Sprintf(xterm256.DarkCyan, "─────────────┐")})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGray, " _ ___  _ "), ""})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Orange, " .oooooooooo. "), infoOS})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGray, " |"+xterm256.Sprintf(xterm256.Orange, "'oooooooooo'")+xterm256.Sprintf(xterm256.DarkGray, "| ")), shell})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGray, " |            | "), infoCPU})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGray, "  '.________.' "), infoIP})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ``)})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ``), xterm256.Sprintf(xterm256.DarkCyan, "└─────────────────────────────────────────────┘")})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ` `)})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ""), block})
 
 	t.SetStyle(table.Style{
 		Name: "newStyle",

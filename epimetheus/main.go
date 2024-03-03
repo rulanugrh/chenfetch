@@ -60,14 +60,14 @@ func main() {
 	}
 
 	bi, _ := ghw.BIOS()
-	vendor := "  " + xterm256.Sprintf(xterm256.DarkCyan, "󰌢 ") + xterm256.Sprintf(xterm256.DarkCyan, bi.Vendor)
+	vendor := "  " + xterm256.Sprintf(xterm256.Magenta, "󰌢 ") + xterm256.Sprintf(xterm256.White, bi.Vendor)
 
 	// mem, _ := ghw.Memory()
 	// fmt.Println(mem.String())
 
 	bl, _ := ghw.Block()
 
-	disk := "  " + xterm256.Sprintf(xterm256.DarkCyan, "󰨣 ") + xterm256.Sprintf(xterm256.DarkCyan, ByteFormat(float64(bl.TotalPhysicalBytes), 1)+" Available")
+	disk := "  " + xterm256.Sprintf(xterm256.Magenta, "󰨣 ") + xterm256.Sprintf(xterm256.White, ByteFormat(float64(bl.TotalPhysicalBytes), 1)+" Available")
 
 	var block string
 	var colorList = []xterm256.Color{
@@ -101,21 +101,21 @@ func main() {
 	var infoOS string
 	var shell string
 	if data.OS == "windows" {
-		infoOS = "  " + xterm256.Sprintf(xterm256.DarkCyan, "  ") + xterm256.Sprintf(xterm256.DarkCyan, data.OS)
+		infoOS = "  " + xterm256.Sprintf(xterm256.Magenta, "  ") + xterm256.Sprintf(xterm256.White, data.OS)
 		ex := os.Getenv("POWERLINE_COMMAND")
-		shell = "  " + xterm256.Sprintf(xterm256.DarkCyan, "  ") + xterm256.Sprintf(xterm256.DarkCyan, string(ex))
+		shell = "  " + xterm256.Sprintf(xterm256.Magenta, "  ") + xterm256.Sprintf(xterm256.White, string(ex))
 	} else {
-		infoOS = "  " + xterm256.Sprintf(xterm256.DarkCyan, "  ") + xterm256.Sprintf(xterm256.DarkCyan, data.OS)
+		infoOS = "  " + xterm256.Sprintf(xterm256.Magenta, "  ") + xterm256.Sprintf(xterm256.White, data.OS)
 		ex, _ := exec.Command("/bin/sh", "-c", "echo $TERM").Output()
-		shell = "  " + xterm256.Sprintf(xterm256.DarkCyan, "  ") + xterm256.Sprintf(xterm256.DarkCyan, string(ex))
+		shell = "  " + xterm256.Sprintf(xterm256.Magenta, "  ") + xterm256.Sprintf(xterm256.White, string(ex))
 	}
 
-	infoCPU := "  " + xterm256.Sprintf(xterm256.DarkCyan, "  ") + xterm256.Sprintf(xterm256.DarkCyan, cpuName)
-	infoIP := "  " + xterm256.Sprintf(xterm256.DarkCyan, "  ") + xterm256.Sprintf(xterm256.DarkCyan, ips)
+	infoCPU := "  " + xterm256.Sprintf(xterm256.Magenta, "  ") + xterm256.Sprintf(xterm256.White, cpuName)
+	infoIP := "  " + xterm256.Sprintf(xterm256.Magenta, "  ") + xterm256.Sprintf(xterm256.White, ips)
 
 	t := table.NewWriter()
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ""), xterm256.Sprintf(xterm256.DarkCyan, "┌─────────────") + xterm256.Sprintf(xterm256.Magenta, " E P I M E T H E U S ") + xterm256.Sprintf(xterm256.DarkCyan, "────────────┐")})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ""), xterm256.Sprintf(xterm256.Red, "┌─────────────") + xterm256.Sprintf(xterm256.Cyan, " E P I M E T H E U S ") + xterm256.Sprintf(xterm256.Red, "────────────┐")})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, "    _ ___  _  "), infoOS})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Orange, "  .oooooooooo.  "), shell})

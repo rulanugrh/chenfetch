@@ -32,7 +32,7 @@ _**[Titan Theme](./titan/)**_
 
 _**[Janus Theme](./janus/)**_
 
-![screenshot2](.github/assets/janus/1.jpg)
+![screenshot2](.github/assets/janus/3.jpg)
 
 
 _**[Pandora Theme](./pandora/)**_

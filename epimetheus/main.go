@@ -30,8 +30,6 @@ func main() {
 		xterm256.Yellow,
 		xterm256.Magenta,
 		xterm256.White,
-		xterm256.LightGray,
-		xterm256.Black,
 	}
 
 	for _, color := range colorList {
@@ -71,16 +69,17 @@ func main() {
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
 
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ""), xterm256.Sprintf(xterm256.DarkCyan, "┌──────────────") + xterm256.Sprintf(xterm256.Red, " ハードウェア情報 ") + xterm256.Sprintf(xterm256.DarkCyan, "─────────────┐")})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGray, " _ ___  _ "), ""})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Orange, " .oooooooooo. "), infoOS})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGray, " |"+xterm256.Sprintf(xterm256.Orange, "'oooooooooo'")+xterm256.Sprintf(xterm256.DarkGray, "| ")), shell})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGray, " |            | "), infoCPU})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.DarkGray, "  '.________.' "), infoIP})
+  t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, " "), xterm256.Sprintf(xterm256.DarkCyan, "┌─────────────") + xterm256.Sprintf(xterm256.Magenta, " E P I M E T H E U S ") + xterm256.Sprintf(xterm256.DarkCyan, "────────────┐")})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, "    _ ___  _  "), ""})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Orange, "  .oooooooooo.  "), infoOS})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, " |"+xterm256.Sprintf(xterm256.Orange, "'oooooooooo'")+xterm256.Sprintf(xterm256.White, "|  ")), shell})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, " |            |  "), infoCPU})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, "  '.________.'   "), infoIP})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ``)})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ``), xterm256.Sprintf(xterm256.DarkCyan, "└─────────────────────────────────────────────┘")})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ` `), xterm256.Sprintf(xterm256.DarkCyan, "└─────────────────────────────────────────────┘")})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ` `)})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ""), block})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ""),block+"      "+block})
+  	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ` `)})
 
 	t.SetStyle(table.Style{
 		Name: "newStyle",

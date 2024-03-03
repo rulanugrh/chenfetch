@@ -2,17 +2,54 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"os"
 	"os/exec"
+	"strconv"
 	"strings"
 
 	"github.com/gilliek/go-xterm256/xterm256"
+	"github.com/jaypipes/ghw"
 	"github.com/jedib0t/go-pretty/v6/table"
 	"github.com/shirou/gopsutil/v3/cpu"
 	"github.com/shirou/gopsutil/v3/host"
 	"github.com/shirou/gopsutil/v3/net"
-  "github.com/jaypipes/ghw"
 )
+
+func RoundUp(input float64, places int) (newVal float64) {
+	var round float64
+	pow := math.Pow(10, float64(places))
+	digit := pow * input
+	round = math.Ceil(digit)
+	newVal = round / pow
+	return
+}
+func ByteFormat(inputNum float64, precision int) string {
+
+	if precision <= 0 {
+		precision = 1
+	}
+
+	var unit string
+	var returnVal float64
+
+	if inputNum >= 1000000000 {
+		returnVal = RoundUp((inputNum / 1073741824), precision)
+		unit = " GB" // gigabyte
+	} else if inputNum >= 1000000 {
+		returnVal = RoundUp((inputNum / 1048576), precision)
+		unit = " MB" // megabyte
+	} else if inputNum >= 1000 {
+		returnVal = RoundUp((inputNum / 1024), precision)
+		unit = " KB" // kilobyte
+	} else {
+		returnVal = inputNum
+		unit = " bytes" // byte
+	}
+
+	return strconv.FormatFloat(returnVal, 'f', precision, 64) + unit
+
+}
 
 func main() {
 
@@ -22,12 +59,18 @@ func main() {
 		cpuName = fmt.Sprintf("%s", cp.ModelName)
 	}
 
-  bi, _ := ghw.BIOS()
-  fmt.Println(bi.Vendor)
-  mem, _ := ghw.Memory()
-  fmt.Println(mem.String())
-  bl, _ := ghw.Block()
-  fmt.Println(bl.String())
+	bi, _ := ghw.BIOS()
+	vendor := "  " + xterm256.Sprintf(xterm256.DarkCyan, "  ") + xterm256.Sprintf(xterm256.DarkCyan, bi.Vendor)
+	fmt.Println(bi.Vendor)
+
+	// mem, _ := ghw.Memory()
+	// fmt.Println(mem.String())
+
+	bl, _ := ghw.Block()
+	fmt.Println(bl.String())
+
+	disk := "  " + xterm256.Sprintf(xterm256.DarkCyan, "󰨣  ") + xterm256.Sprintf(xterm256.DarkCyan, ByteFormat(float64(bl.TotalPhysicalBytes), 1))
+
 	var block string
 	var colorList = []xterm256.Color{
 		xterm256.Red,
@@ -74,17 +117,17 @@ func main() {
 
 	t := table.NewWriter()
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ""), xterm256.Sprintf(xterm256.DarkCyan, "┌─────────────") + xterm256.Sprintf(xterm256.Magenta, " E P I M E T H E U S ") + xterm256.Sprintf(xterm256.DarkCyan, "────────────┐")})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
-
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, " "), xterm256.Sprintf(xterm256.DarkCyan, "┌─────────────") + xterm256.Sprintf(xterm256.Magenta, " E P I M E T H E U S ") + xterm256.Sprintf(xterm256.DarkCyan, "────────────┐")})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, "    _ ___  _  "), ""})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.Orange, "  .oooooooooo.  "), infoOS})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, " |"+xterm256.Sprintf(xterm256.Orange, "'oooooooooo'")+xterm256.Sprintf(xterm256.White, "|  ")), shell})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, " |            |  "), infoCPU})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.White, "  '.________.'   "), infoIP})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ``)})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, `    `)," "+block + "      " + block})
-	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ``), vendor})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, `    `), disk})
+	t.AppendRow(table.Row{})
+	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ""), " " + block + "      " + block})
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, ` `)})
 
 	t.SetStyle(table.Style{

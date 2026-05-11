@@ -16,17 +16,17 @@ import (
 )
 
 var asciiLines = []string{
-	`⣿⣧⣿⣿⣿⣿⡟⢸⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣏⣿⣿`,
-	`⣿⢸⣿⡏⣿⣿⣹⢸⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿`,
-	`⣿⢼⡟⣤⣿⣧⣿⣸⣿⣿⣿⣿⣿⣿⣿⢻⣸⣿⢿⣿⣿⣿⣿⣿⣿⡇`,
-	`⣿⢸⢧⣽⡼⣟⣛⣃⣿⠿⣿⣿⣿⣿⣿⢸⣏⣿⡘⣿⣿⣿⣿⡿⣿⢳`,
-	`⣿⡜⣸⡿⠷⠿⢿⣿⡼⡟⣼⡿⣿⣿⡿⡼⣿⣞⣆⡄⢭⢟⣻⡇⡿⣾`,
-	`⡜⣷⢻⣤⣿⡒⠄⠄⠉⣺⣿⣿⣾⣽⣇⣥⡯⠿⠾⣞⣮⣃⢻⣧⣇⣿`,
-	`⣿⣮⡞⣷⣯⣗⣙⣿⣧⣣⣿⣿⣿⣿⣿⣿⣇⠟⡂⣀⣀⠉⡫⢸⣸⣿`,
-	`⢿⣿⣿⣮⡻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣿⣿⣷⣬⣍⣎⣿⣿`,
-	`⣦⣭⣟⡿⣿⣿⣝⢿⣿⣿⣿⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣜⣼⣿⣿`,
-	`⠋⠄⠄⠄⠄⠉⠻⢷⣝⡿⣿⠿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⣼⣿⣿⣿`,
-	`⠄⠄⠄⠄⠄⠄⠄⠄⢙⢿⣮⡻⣿⣷⣿⣿⠿⣟⡯⢡⣾⣠⣿⣿⣿⣿`,
+	`⠀⠀⠀⠀⠀⠀⢀⣤⣶⣶⣤⡀⠀⠀⠀⠀⠀⠀`,
+	`⠀⠀⠀⠀⠀⣴⠟⠉⠀⠀⠉⠻⣦⠀⠀⠀⠀⠀`,
+	`⠀⠀⠀⠀⣼⠃⠀⢀⣤⣤⡀⠀⠘⣧⠀⠀⠀⠀`,
+	`⠀⠀⠀⠀⣿⠀⠀⣿⣿⣿⣿⠀⠀⣿⠀⠀⠀⠀`,
+	`⠀⠀⠀⠀⢿⡄⠀⠘⠿⠿⠃⠀⢠⡿⠀⠀⠀⠀`,
+	`⠀⠀⠀⠀⠈⢿⣦⣄⠀⠀⣠⣴⡿⠁⠀⠀⠀⠀`,
+	`⠀⠀⠀⠀⠀⠀⠉⠛⠿⠿⠛⠉⠀⠀⠀⠀⠀⠀`,
+	`⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀`,
+	`⠀⠀⢰⠟⠉⠀ HIKARI ⠀⠉⠻⡆⠀⠀`,
+	`⠀⠀⠘⣧⣀⠀⠀⠀⠀⠀⠀⣀⣼⠃⠀⠀`,
+	`⠀⠀⠀⠀⠉⠛⠶⠶⠶⠛⠉⠀⠀⠀⠀⠀`,
 }
 
 var (
@@ -51,7 +51,7 @@ func c(col xterm256.Color, s string) string {
 	return xterm256.Sprintf(col, s)
 }
 
-const boxW = 42
+const boxW = 38
 
 func boxTop() string {
 	return "╭" + strings.Repeat("─", boxW) + "╮"
@@ -127,6 +127,8 @@ func main() {
 	termStr := strings.TrimSpace(string(termRaw))
 	shellStr := user_shell.GetUserShell()
 	ipStr := localIP()
+	getVersion := strings.Split(hostInfo.KernelVersion, "-")[0]
+	title := fmt.Sprintf("%s: %s", hostInfo.Platform, getVersion)
 
 	swatchColors := []xterm256.Color{
 		colorRosewater,
@@ -162,31 +164,37 @@ func main() {
 
 		boxRow(
 			c(colorPeach, ""),
-			c(colorSubtext, "os      "),
+			c(colorFlamingo, "os      "),
 			c(colorRosewater, hostInfo.OS),
 		),
 
 		boxRow(
+			c(colorPeach, ""),
+			c(colorFlamingo, "version "),
+			c(colorRed, title),
+		),
+
+		boxRow(
 			c(colorSky, ""),
-			c(colorSubtext, "term    "),
+			c(colorFlamingo, "term    "),
 			c(colorSky, termStr),
 		),
 
 		boxRow(
 			c(colorGreen, "󱑈"),
-			c(colorSubtext, "uptime  "),
+			c(colorFlamingo, "uptime  "),
 			c(colorGreen, uptimeStr),
 		),
 
 		boxRow(
 			c(colorBlue, ""),
-			c(colorSubtext, "shell   "),
+			c(colorFlamingo, "shell   "),
 			c(colorBlue, shellStr),
 		),
 
 		boxRow(
 			c(colorMauve, ""),
-			c(colorSubtext, "ip      "),
+			c(colorFlamingo, "ip      "),
 			c(colorLavender, ipStr),
 		),
 
@@ -261,7 +269,7 @@ func main() {
 		}
 
 		t.AppendRow(table.Row{
-			c(colorSky, asciiLines[i]),
+			c(colorTeal, asciiLines[i]),
 			infoCol,
 		})
 	}

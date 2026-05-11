@@ -42,4 +42,8 @@ _**[Pandora Theme](./pandora/)**_
 _**[Epimetheus Theme](./epimetheus/)**_
 
 ![banner](.github/assets/epimetheus/3.jpg)
+
+_**[Hikari Theme](./hikari/)**_
+
+![banner](.github/assets/hikari/image.png)
 > _Note: Theme will be update, stay tune :u_

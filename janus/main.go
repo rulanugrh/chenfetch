@@ -22,10 +22,11 @@ func main() {
 	}
 
 	ntw, _ := net.Interfaces()
+	fmt.Printf(ntw.String())
 	var ips string
 	for _, nt := range ntw {
 		for _, d := range nt.Addrs {
-			check := strings.Contains(d.Addr, "192")
+			check := strings.Contains(d.Addr, "192") || strings.Contains(d.Addr, "172") || strings.Contains(d.Addr, "10")
 			if check {
 				ips = d.Addr
 				break

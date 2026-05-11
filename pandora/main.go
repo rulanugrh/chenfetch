@@ -43,6 +43,8 @@ func main() {
 	data, _ := host.Info()
 	vm, _ := mem.VirtualMemory()
 	currentUser, _ := user.Current()
+	usedVm := vm.Used / 1000 / 1000 / 1024
+	totalVM := vm.Total / 1000 / 1000 / 1024
 
 	title := "  " + xterm256.Sprintf(xterm256.Red, "こんにちは世界")
 	os := "  " + "  " + xterm256.Sprintf(xterm256.Magenta, data.OS)
@@ -54,7 +56,7 @@ func main() {
 	shell := "  " + "  " + xterm256.Sprintf(xterm256.Magenta, user_shell.GetUserShell())
 	user := "  " + xterm256.Sprintf(xterm256.Red, fmt.Sprintf("%s@%s", currentUser.Username, data.Hostname))
 	cpu := "  " + "  " + xterm256.Sprintf(xterm256.Magenta, cpuName)
-	memory := "  " + "﬙  " + xterm256.Sprintf(xterm256.Magenta, fmt.Sprintf("%dMB / %dMB (%.2f%%%%)", vm.Used, vm.Total, vm.UsedPercent))
+	memory := "  " + "  " + xterm256.Sprintf(xterm256.Magenta, fmt.Sprintf("%dGB / %dGB (%.2f%%%%)", usedVm, totalVM, vm.UsedPercent))
 
 	t := table.NewWriter()
 	t.AppendRow(table.Row{xterm256.Sprintf(xterm256.LightGray, "")})
